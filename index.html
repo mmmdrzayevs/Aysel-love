@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayselin  sevgisi💖</title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", sans-serif;
+      background-color: #ffeef0;
+      text-align: center;
+      padding-top:50px;
+      margin: 0;
+      overflow: hidden;
+    }
+    h1 {
+      color: #d6336c;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in;
+    }
+    .buttons {
+      margin-top: 30px;
+    }
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #yesBtn {
+      background-color: #28a745;
+      color: white;
+    }
+    #noBtn {
+      background-color: #dc3545;
+      color: white;
+      position: absolute;
+    }
+    #result {
+      font-size: 24px;
+      color: #20c997;
+      margin-top: 30px;
+      display: none;
+      animation: bounceIn 0.5s ease-in;
+    }
+    img {
+      width: 150px;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    /* Mobil Uyğunluq */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
+      }
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+      img {
+        width: 100px;
+      }
+    }
+
+    /* Animasiyalar */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h1 id="message">Ayselim, Sən mənim həyatıma gələndə mənim həyatıma rəng gəldi 💔<br> Sən də məni sevirsənmi?  Əgər sevirsənsə heç vaxt buraxmayacağna söz verirsənmi? 🤔</h1>
+  <div class="buttons">
+    <button id="yesBtn">Bəli 💖</button>
+    <button id="noBtn">Bilmirəm 😢</button>
+  </div>
+  <div id="result">Yaşasınnn! ❤️ Biz bir-birimizi sevirik!</div>
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDRrZDNqMnN1ajhxd3FuYnRkdm16eDA3ZjZpcGo5NmxpNm9nZGh2OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ntYxs98LbJKxtnDagd/giphy.gif" alt="Cute gif">
+
+  <!-- Konfetti Kitabxanası -->
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+  <script>
+    // Fərdiləşdirmə: URL-dən ad alma
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name') || 'Aysu, Sevgilim';
+    document.getElementById('message').innerHTML = `${name} Sən mənim həyatıma gələndən mənim həyatıma rəng gəldi 💔 <br>Sən də məni sevirsənmi?  Əgər sevirsənsə heç vaxt buraxmayacağna söz verirsənmi? 🤔`;
+
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const result = document.getElementById("result");
+
+    // Konfetti Obyekti
+    const jsConfetti = new JSConfetti();
+
+    // Səs Effektləri
+    const yesSound = new Audio('https://www.myinstants.com/media/sounds/success.mp3'); // Sevinc səsi
+    const noSound = new Audio('https://www.myinstants.com/media/sounds/whoosh.mp3'); // Qaçma səsi
+
+    yesBtn.addEventListener("click", () => {
+      result.style.display = "block";
+      yesSound.play();
+      jsConfetti.addConfetti({
+        emojis: ['❤️', '💖', '🌸'],
+        confettiNumber: 100,
+        confettiRadius: 6,
+      });
+    });
+
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+      noSound.play();
+    });
+  </script>
+</body>
+</html>
